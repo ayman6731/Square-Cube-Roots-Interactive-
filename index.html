@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square and Cube Roots Hub | Mr. Ayman Saber</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax Configuration & Script -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 min-h-screen text-white p-4 md:p-8 flex flex-col items-center">
+
+    <!-- Main Container -->
+    <div class="w-full max-w-4xl bg-white/15 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20">
+        
+        <!-- Top Branding Header -->
+        <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-6">
+            <h2 class="text-xs md:text-sm text-yellow-400 font-semibold tracking-wider">Interactive Math Learning Environment | Created by Mr. Ayman Saber</h2>
+            <span class="text-xs bg-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full border border-indigo-500/30">Prep 2 - Term 1</span>
+        </div>
+
+        <!-- SECTION 1: CORE CONCEPTS & RULES -->
+        <div id="learning-screen">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-yellow-400">Core Concepts & Rules</h1>
+                <button onclick="toggleAudioGuide()" id="audio-btn" class="flex items-center gap-2 bg-indigo-600/50 hover:bg-indigo-600 text-indigo-200 px-4 py-2 rounded-xl text-sm border border-indigo-400/30 transition cursor-pointer">
+                    🔊 <span id="audio-text">Listen to Audio Guide</span>
+                </button>
+            </div>
+
+            <p class="text-gray-300 text-sm mb-6">Master the fundamentals and special technical tricks before taking the challenge!</p>
+
+            <div class="space-y-4 mb-8">
+                <!-- Rule 1 -->
+                <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                    <h3 class="font-bold text-yellow-300 mb-1">1. Square Roots ($\sqrt{a}$):</h3>
+                    <p class="text-gray-200 text-sm">Every positive real number has two square roots: a positive principal root and a negative root.</p>
+                    <p class="text-gray-300 text-xs mt-1">For example, $\sqrt{25} = 5$ and $-\sqrt{25} = -5$.</p>
+                </div>
+
+                <!-- Rule 2 -->
+                <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                    <h3 class="font-bold text-yellow-300 mb-1">2. Cube Roots ($\sqrt[3]{a}$):</h3>
+                    <p class="text-gray-200 text-sm">Every real number has exactly one real cube root, and it preserves the original sign.</p>
+                    <p class="text-gray-300 text-xs mt-1">For example, $\sqrt[3]{-125} = -5$ because $(-5)^3 = -125$.</p>
+                </div>
+
+                <!-- Rule 3: Special Tricks -->
+                <div class="bg-indigo-950/60 p-5 rounded-xl border border-yellow-500/30">
+                    <h3 class="font-bold text-yellow-400 mb-3 text-base">3. Special Tricks & Traps (Highlights):</h3>
+                    <div class="space-y-3 text-sm text-gray-200">
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <span class="text-yellow-300 font-semibold">Trick 1 (Equations Trap):</span> If $x^2 = 16$, never say $x = 4$ only! Always write $x = \pm 4$ when taking the square root in equations.
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <span class="text-yellow-300 font-semibold">Trick 2 (Distributivity Trap):</span> $\sqrt{9 + 16} = \sqrt{25} = 5$, which does NOT equal $\sqrt{9} + \sqrt{16} = 3 + 4 = 7$.
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <span class="text-yellow-300 font-semibold">Trick 3 (Negative Under Square Root):</span> $\sqrt{-16}$ has no meaning in $\mathbb{R}$ (Undefined / $\phi$).
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <span class="text-yellow-300 font-semibold">Trick 4 (Square Root of Square Variable):</span> $\sqrt{x^2} = \vert{}x\vert{}$, and if $\sqrt{x^2} = -x$ then $x \le 0$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="startStandardQuiz()" class="bg-yellow-400 hover:bg-yellow-500 text-indigo-950 font-bold px-10 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 cursor-pointer text-base">
+                    Start Standard Challenge 🚀
+                </button>
+            </div>
+        </div>
+
+        <!-- SECTION 2: QUIZ SCREEN -->
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-6 text-sm font-medium text-gray-300 border-b border-white/10 pb-3">
+                <span id="question-counter">Question 1 of 6</span>
+                <span id="attempts-badge" class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-lg border border-blue-500/30 text-xs">Attempt 1 of 3</span>
+                <span id="score-tracker" class="text-yellow-400 font-bold">Score: 0</span>
+            </div>
+
+            <div class="mb-6">
+                <div id="question-text" class="text-lg md:text-xl font-semibold mb-6 min-h-[90px] flex items-center justify-center text-center bg-white/5 p-4 rounded-xl border border-white/10"></div>
+                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <div id="feedback-container" class="hidden mt-4 p-4 rounded-xl text-center font-medium mb-4"></div>
+            
+            <div class="flex justify-end">
+                <button id="next-btn" onclick="nextQuestion()" class="hidden bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl shadow transition cursor-pointer">
+                    Next Question ➡️
+                </button>
+            </div>
+        </div>
+
+        <!-- SECTION 3: RESULT SCREEN -->
+        <div id="result-screen" class="hidden text-center py-8">
+            <h2 id="result-title" class="text-3xl font-bold text-yellow-400 mb-4">Challenge Completed! 🎉</h2>
+            <p id="final-score" class="text-2xl mb-4 font-semibold"></p>
+            <p id="performance-msg" class="text-gray-300 mb-8 text-base max-w-xl mx-auto leading-relaxed"></p>
+            
+            <div id="action-buttons-container" class="flex justify-center gap-4 flex-wrap">
+                <!-- Dynamic Buttons -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Expanded Standard Question Bank (12 Questions to ensure zero repetition during retries)
+        const standardQuestionBankFull = [
+            { q: "What is the positive square root of $36$?", options: ["$6$", "$-6$", "$\\pm 6$", "$18$"], correct: 0 },
+            { q: "Find the value of $-\\sqrt{81}$", options: ["$9$", "$-9$", "$\\pm 9$", "$81$"], correct: 1 },
+            { q: "What is $\\pm \\sqrt{\\frac{4}{25}}$?", options: ["$\\frac{2}{5}$", "$-\\frac{2}{5}$", "$\\pm \\frac{2}{5}$", "$\\frac{4}{5}$"], correct: 2 },
+            { q: "The cube root of $-125$ is:", options: ["$5$", "$25$", "$-5$", "$-25$"], correct: 2 },
+            { q: "If $x^2 = 16$, then $x =$ (Trick 1)", options: ["$4$", "$-4$", "$\\pm 4$", "$8$"], correct: 2 },
+            { q: "What is the value of $\\sqrt{9 + 16}$? (Trick 2)", options: ["$7$", "$5$", "$4 + 3$", "$25$"], correct: 1 },
+            { q: "What is the value of $\\sqrt{0.64}$?", options: ["$0.8$", "$-0.8$", "$\\pm 0.8$", "$0.08$"], correct: 0 },
+            { q: "The cube root of $0.008$ is:", options: ["$0.2$", "$0.02$", "$-0.2$", "$2$"], correct: 0 },
+            { q: "What is $\\sqrt{10^2 - 6^2}$?", options: ["$4$", "$8$", "$10$", "$16$"], correct: 1 },
+            { q: "If $\\sqrt[3]{x} = 4$, then $x =$?", options: ["$12$", "$64$", "16", "$8$"], correct: 1 },
+            { q: "The expression $\\sqrt{(-5)^2}$ equals:", options: ["$-5$", "$5$", "$\\pm 5$", "undefined"], correct: 1 },
+            { q: "The side length of a square whose area is $121\\text{ cm}^2$ is:", options: ["$11\\text{ cm}$", "$-11\\text{ cm}$", "$12\\text{ cm}$", "$22\\text{ cm}$"], correct: 0 }
+        ];
+
+        // Expanded Elite Challenge Bank (12 Advanced Questions)
+        const eliteQuestionBankFull = [
+            { q: "If $\\sqrt{x^2} = -x$, what is the condition of $x$ in $\\mathbb{R}$?", options: ["$x > 0$", "$x \\ge 0$", "$x \\le 0$", "$x \\neq 0$"], correct: 2 },
+            { q: "The solution set of $(x - 2)^2 = 9$ in $\\mathbb{R}$ is:", options: ["$\\{5\\}$", "$\\{-1\\}$", "$\\{5, -1\\}$", "$\\{3, -3\\}$"], correct: 2 },
+            { q: "If $\\sqrt{x} + \\sqrt{x} = 10$, then $x =$?", options: ["$25$", "$50$", "$100$", "$5$"], correct: 0 },
+            { q: "What is the exact value of $\\sqrt[3]{3^3 + 4^3 + 5^3}$?", options: ["$6$", "$12$", "$\\sqrt[3]{216}$", "Both $6$ and $\\sqrt[3]{216}$ are correct"], correct: 3 },
+            { q: "If $x$ is a negative integer, which of the following is always a positive real number?", options: ["$x^3$", "$\\sqrt[3]{x}$", "$x^2 - \\sqrt{x^2}$", "$x^2$"], correct: 3 },
+            { q: "If $\\sqrt{x^3} = 8$, what is the value of $x$?", options: ["$2$", "$4$", "$8$", "$16$"], correct: 1 },
+            { q: "If $\\sqrt{x} + 3 = 7$, what is the value of $\\sqrt{x+9}$?", options: ["$4$", "$5$", "$7$", "$16$"], correct: 1 },
+            { q: "What is the value of $\\sqrt{3} \\times \\sqrt{27}$?", options: ["$3$", "$9$", "$81$", "$\\sqrt{30}$"], correct: 1 },
+            { q: "If $x^3 = -27$ and $y^2 = 16$, find the value of $x + y$ (given $y > 0$)?", options: ["$-7$", "$1$", "$-1$", "$7$"], correct: 1 },
+            { q: "The number of integer solutions for $\\sqrt{10} < x < \\sqrt{50}$ is:", options: ["$3$", "$4$", "$5$", "$6$"], correct: 1 },
+            { q: "If $\\sqrt[3]{x} = -2$, then $x^2 =$?", options: ["$-8$", "$16$", "$64$", "$4$"], correct: 2 },
+            { q: "Simplify: $\\sqrt{50} + \\sqrt{18}$ (Hint: $\\sqrt{50}=5\\sqrt{2}, \\sqrt{18}=3\\sqrt{2}$)", options: ["$8\\sqrt{2}$", "$2\\sqrt{2}$", "$8\\sqrt{4}$", "$4\\sqrt{5}$"], correct: 0 }
+        ];
+
+        // Expanded Remedial Test Bank (6 Questions)
+        const remedialBankFull = [
+            { q: "What is the square root of $49$?", options: ["$7$", "$-7$", "$\\pm 7$", "$14$"], correct: 0 },
+            { q: "The cube root of $27$ is:", options: ["$9$", "$3$", "$-3$", "$6$"], correct: 1 },
+            { q: "If $x^2 = 25$, then $x =$?", options: ["$5$", "$-5$", "$\\pm 5$", "$10$"], correct: 2 },
+            { q: "What is $\\sqrt{100}$?", options: ["$10$", "$-10$", "$\\pm 10$", "$50$"], correct: 0 },
+            { q: "The cube root of $-8$ is:", options: ["$2$", "$-2$", "$4$", "$-4$"], correct: 1 },
+            { q: "If $\\sqrt{x} = 5$, then $x =$?", options: ["$5$", "$10$", "$25$", "$50$"], correct: 2 }
+        ];
+
+        let activeQuestionBank = [];
+        let sessionSelectedQuestions = [];
+        let usedIndicesInSession = [];
+        let score = 0;
+        let currentQuestionCount = 0;
+        let totalQuestionsPerGame = 6;
+        let currentAttempt = 1;
+        const maxAttempts = 3;
+        let currentMode = 'standard';
+        let currentQuestion = null;
+        let eliteAttemptCount = 0; // Tracks elite attempts (max 2)
+        let isAudioPlaying = false;
+        let speechSynth = window.speechSynthesis;
+
+        function toggleAudioGuide() {
+            const audioBtnText = document.getElementById('audio-text');
+            if (!isAudioPlaying) {
+                if (speechSynth.speaking) { speechSynth.cancel(); }
+                const textToSpeak = "Core Concepts and Rules. Square Roots and Cube Roots principles. Special technical tricks and highlights. Trick 1: Equations trap. If x squared equals 16, x equals plus or minus 4. Trick 2: Distributivity trap. Square root of 9 plus 16 does not equal square root of 9 plus square root of 16. Trick 3: Negative under square root has no meaning in real numbers. Trick 4: Square root of x squared equals absolute x.";
+                const utterThis = new SpeechSynthesisUtterance(textToSpeak);
+                utterThis.rate = 0.9;
+                utterThis.onend = () => {
+                    isAudioPlaying = false;
+                    audioBtnText.innerText = "Listen to Audio Guide";
+                };
+                speechSynth.speak(utterThis);
+                isAudioPlaying = true;
+                audioBtnText.innerText = "Stop Audio ⏹️";
+            } else {
+                speechSynth.cancel();
+                isAudioPlaying = false;
+                audioBtnText.innerText = "Listen to Audio Guide";
+            }
+        }
+
+        function startStandardQuiz() {
+            if (speechSynth.speaking) { speechSynth.cancel(); isAudioPlaying = false; }
+            currentMode = 'standard';
+            activeQuestionBank = standardQuestionBankFull;
+            totalQuestionsPerGame = 6;
+            currentAttempt = 1;
+            initQuizSession();
+        }
+
+        function startEliteChallenge() {
+            if (speechSynth.speaking) { speechSynth.cancel(); isAudioPlaying = false; }
+            eliteAttemptCount++;
+            currentMode = 'elite';
+            activeQuestionBank = eliteQuestionBankFull;
+            totalQuestionsPerGame = 6;
+            initQuizSession();
+        }
+
+        function startRemedialTest() {
+            if (speechSynth.speaking) { speechSynth.cancel(); isAudioPlaying = false; }
+            currentMode = 'remedial';
+            activeQuestionBank = remedialBankFull;
+            totalQuestionsPerGame = 3;
+            currentAttempt = 1;
+            initQuizSession();
+        }
+
+        function prepareSessionQuestions() {
+            let pool = [...activeQuestionBank];
+            pool.sort(() => Math.random() - 0.5);
+            sessionSelectedQuestions = pool.slice(0, totalQuestionsPerGame);
+            usedIndicesInSession = [];
+        }
+
+        function initQuizSession() {
+            document.getElementById('learning-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            
+            if (currentMode === 'elite') {
+                document.getElementById('attempts-badge').innerText = `🔥 Elite Challenge (Attempt ${eliteAttemptCount} of 2)`;
+            } else if (currentMode === 'remedial') {
+                document.getElementById('attempts-badge').innerText = "🔄 Remedial Training Test";
+            } else {
+                document.getElementById('attempts-badge').innerText = `Attempt ${currentAttempt} of${maxAttempts}`;
+            }
+            
+            prepareSessionQuestions();
+            score = 0;
+            currentQuestionCount = 0;
+            loadNextQuestion();
+        }
+
+        function loadNextQuestion() {
+            if (currentQuestionCount >= sessionSelectedQuestions.length) {
+                showResults();
+                return;
+            }
+
+            currentQuestion = sessionSelectedQuestions[currentQuestionCount];
+            currentQuestionCount++;
+
+            document.getElementById('question-counter').innerText = `Question ${currentQuestionCount} of${totalQuestionsPerGame}`;
+            document.getElementById('score-tracker').innerText = `Score: ${score}`;
+            document.getElementById('feedback-container').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            document.getElementById('question-text').innerHTML = currentQuestion.q;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            let shuffledOptions = currentQuestion.options.map((opt, idx) => ({ opt, originalIndex: idx }));
+            shuffledOptions.sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach((item) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn bg-white/5 hover:bg-white/20 border border-white/10 p-4 rounded-xl text-center font-medium transition text-lg flex items-center justify-center cursor-pointer";
+                btn.innerHTML = item.opt;
+                btn.onclick = () => selectAnswer(item.originalIndex, currentQuestion.correct, btn, shuffledOptions);
+                optionsContainer.appendChild(btn);
+            });
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise().catch((err) => console.log(err));
+            }
+        }
+
+        function selectAnswer(selectedIndex, correctIndex, selectedBtn, shuffledOptions) {
+            const allButtons = document.querySelectorAll('.option-btn');
+            allButtons.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('feedback-container');
+            feedback.classList.remove('hidden');
+
+            if (selectedIndex === correctIndex) {
+                selectedBtn.classList.add('bg-emerald-600/80', 'border-emerald-400');
+                feedback.className = "mt-4 p-4 rounded-xl text-center font-medium mb-4 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                feedback.innerText = "Correct Answer! Well done 🌟";
+                score++;
+            } else {
+                selectedBtn.classList.add('bg-rose-600/80', 'border-rose-400');
+                allButtons.forEach((b, idx) => {
+                    if (shuffledOptions[idx].originalIndex === correctIndex) {
+                        b.classList.add('bg-emerald-600/80', 'border-emerald-400');
+                    }
+                });
+                feedback.className = "mt-4 p-4 rounded-xl text-center font-medium mb-4 bg-rose-500/20 text-rose-300 border border-rose-500/30";
+                feedback.innerText = "Incorrect Answer. Let's keep going! 💪";
+            }
+
+            document.getElementById('score-tracker').innerText = `Score: ${score}`;
+
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestionCount >= totalQuestionsPerGame) {
+                nextBtn.innerText = "Show Results 📊";
+            } else {
+                nextBtn.innerText = "Next Question ➡️";
+            }
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionCount >= totalQuestionsPerGame) {
+                showResults();
+            } else {
+                loadNextQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            const resultScreen = document.getElementById('result-screen');
+            resultScreen.classList.remove('hidden');
+            
+            document.getElementById('final-score').innerText = `Your Final Score: ${score} /${totalQuestionsPerGame}`;
+
+            const msgEl = document.getElementById('performance-msg');
+            const actionContainer = document.getElementById('action-buttons-container');
+            actionContainer.innerHTML = '';
+
+            const isPerfect = (score === totalQuestionsPerGame);
+
+            if (currentMode === 'elite') {
+                if (isPerfect) {
+                    document.getElementById('result-title').innerText = "👑 Math Elite Champion! 👑";
+                    msgEl.innerHTML = "Exceptional! You successfully passed the Elite Challenge with absolute mastery on attempt " + eliteAttemptCount + ". Excellent work!";
+                    actionContainer.innerHTML = `
+                        <button onclick="resetToHome()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition cursor-pointer">Back to Home 🏠</button>
+                    `;
+                } else {
+                    if (eliteAttemptCount < 2) {
+                        document.getElementById('result-title').innerText = `🔥 Elite Challenge Attempt ${eliteAttemptCount} Completed`;
+                        msgEl.innerHTML = "You didn't reach full marks in this elite attempt. Since you have 2 attempts for the Elite Challenge, you can try one more time!";
+                        actionContainer.innerHTML = `
+                            <button onclick="startEliteChallenge()" class="bg-yellow-400 hover:bg-yellow-500 text-indigo-950 font-bold px-8 py-3 rounded-xl shadow-lg transition transform hover:scale-105 cursor-pointer">Retry Elite Challenge (Attempt 2) 🔄</button>
+                            <button onclick="resetToHome()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition cursor-pointer">Back to Home 🏠</button>
+                        `;
+                    } else {
+                        document.getElementById('result-title').innerText = "🌟 Elite Challenge Finished";
+                        msgEl.innerHTML = "You have completed your 2 attempts in the Elite Challenge. Thank you for your great effort and wonderful performance!";
+                        actionContainer.innerHTML = `
+                            <button onclick="resetToHome()" class="bg-yellow-400 hover:bg-yellow-500 text-indigo-950 font-bold px-8 py-3 rounded-xl shadow-lg transition cursor-pointer">Back to Home 🏠</button>
+                        `;
+                    }
+                }
+                return;
+            }
+
+            if (currentMode === 'remedial') {
+                document.getElementById('result-title').innerText = "📘 Remedial Test Completed";
+                msgEl.innerHTML = "You have completed the remedial practice test. You can now review course rules or retry the standard challenge!";
+                actionContainer.innerHTML = `
+                    <button onclick="startStandardQuiz()" class="bg-yellow
